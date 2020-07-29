@@ -3,9 +3,10 @@ import Map from './Map'
 import { StyleMineSweep } from '../style/StyleMineSweep'
 import { coordinate, init, preInit } from '../init'
 import {setCookie} from '../addCookie'
+import { Modal } from 'antd';
+import { ExclamationCircleOutlined } from '@ant-design/icons'
 import Menu from './Menu'
 import Sheet from './Sheet'
-// import {useInterval} from '../hook/useInterval'
 
 const MineSweep = () => {
     const [isFirst, setIsFirst] = useState(true)
@@ -171,14 +172,21 @@ const MineSweep = () => {
             clearTimeout(timer.current)
             setCanContextMenu(false)
             setCanClick(false)
-            let audio = new Audio('audio/gameover.mp3')
-            audio.volume = sound * 0.5
-            audio.play()
-            audio.addEventListener('ended', function () {
-                alert('You Lost!');
+            let audio1 = new Audio('audio/bomb.mp3')
+            audio1.volume = sound * 0.8
+            audio1.play()
+            audio1.addEventListener('ended', function () {
+                let audio = new Audio('audio/gameover.mp3')
+                audio.volume = sound * 0.5
+                audio.play()
+                Modal.confirm({
+                    icon: <ExclamationCircleOutlined />,
+                    content: 'You Lost!',
+                    okText: '确认',
+                });
                 setCookie('F', time)
                 isRestart(true)
-            }, false);
+            })
         }
         if (win === 480 - 99) {
             clearTimeout(click.current)
@@ -190,7 +198,11 @@ const MineSweep = () => {
             audio.volume = sound * 0.6
             audio.play()
             audio.addEventListener('ended', function () {
-                alert('You Win!');
+                Modal.confirm({
+                    icon: <ExclamationCircleOutlined />,
+                    content: 'You Win!',
+                    okText: '确认',
+                });
                 setCookie('T', time)
                 isRestart(true)
             }, false);
