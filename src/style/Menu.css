@@ -1,0 +1,32 @@
+#span1{
+    position: relative;
+    top: 0;
+    height: 60px;
+    width: 50px;
+    overflow: hidden;
+}
+#span2{
+    width: 32px;
+    display: inline-block;
+}
+#img1{
+    cursor: pointer;
+    opacity: 0.8;
+    width: 40px;
+    height: 40px;
+}
+#img2, #img3{
+    cursor: pointer;
+    width: 45px;
+    height: 45px;
+}
+#img2:hover, #img3:hover{
+    opacity: 0.8;
+}
+.slider { 
+    width: 100px;
+    margin: 0 !important; 
+    padding: 0 !important; 
+    left: 868px; 
+    top: -25px;
+} 
