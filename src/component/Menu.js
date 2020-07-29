@@ -33,10 +33,9 @@ const Menu = ({ time, flagNumber, changeSound, isRestart, setSheet }) => {
     }, [])
 
     const restart = () => {
-        let audio = new Audio('audio/click.mp3')
-        audio.volume = slider.current.state.value / 100 * 0.6
+        let audio = new Audio('audio/newGame.mp3')
+        audio.volume = slider.current.state.value / 100
         audio.play()
-        
         isRestart(true)
     }
 
