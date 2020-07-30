@@ -4,7 +4,6 @@ import { StyleMineSweep } from '../style/StyleMineSweep'
 import { coordinate, init, preInit } from '../init'
 import {setCookie} from '../addCookie'
 import { Modal } from 'antd';
-import { ExclamationCircleOutlined } from '@ant-design/icons'
 import Menu from './Menu'
 import Sheet from './Sheet'
 
@@ -179,14 +178,12 @@ const MineSweep = () => {
                 let audio = new Audio('audio/gameover.mp3')
                 audio.volume = sound * 0.5
                 audio.play()
-                Modal.confirm({
-                    icon: <ExclamationCircleOutlined />,
+                Modal.error({
                     content: 'You Lost!',
-                    okText: '确认',
-                });
-                setCookie('F', time)
-                isRestart(true)
-            })
+                    onOk: () => {setCookie('F', time);isRestart(true);},
+                    style: { top: 20 }
+                })
+            }, false)
         }
         if (win === 480 - 99) {
             clearTimeout(click.current)
@@ -198,13 +195,11 @@ const MineSweep = () => {
             audio.volume = sound * 0.6
             audio.play()
             audio.addEventListener('ended', function () {
-                Modal.confirm({
-                    icon: <ExclamationCircleOutlined />,
+                Modal.success({
                     content: 'You Win!',
-                    okText: '确认',
-                });
-                setCookie('T', time)
-                isRestart(true)
+                    onOk: () => {setCookie('T', time);isRestart(true);},
+                    style: { top: 20 }
+                })
             }, false);
         }
     }, [stage, sound, time])
