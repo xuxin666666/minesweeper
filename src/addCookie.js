@@ -5,13 +5,16 @@ const setCookie = (value, time) => {
     var year = d.getFullYear()
     var all = value + ',' + time + ',' + month + '.' + day + '.' + year
     if (document.cookie === '')
-        document.cookie = "minesweeper=" + all + "; expires=Sun, 31 Dec 2051 12:00:00 UTC"
+        document.cookie = "minesweeper=" + all + ",; expires=Sun, 31 Dec 2051 12:00:00 UTC"
     else {
         var name = 'minesweeper='
         var cookie = document.cookie, newCookie
         var start = cookie.indexOf(name)
-        var end = name.length
-        newCookie = cookie.slice(start, end) + all + ',' + cookie.slice(end)
+        var end = cookie.indexOf(";", start);
+        if (end === -1) {
+            end = cookie.length;
+        }
+        newCookie = cookie.slice(start, end) + all + ',; expires=Sun, 31 Dec 2051 12:00:00 UTC' + cookie.slice(end)
         document.cookie = newCookie
     }
 }
