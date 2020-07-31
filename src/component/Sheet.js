@@ -55,7 +55,7 @@ const Sheet = ({ x, y, issheet, setSheet, sound }) => {
 
 
     const handleCookieArray = () => {
-        var array = [], victory = 0, all = 0, lv = 0
+        var array = [], newArray = [], victory = 0, all = 0, lv = 0
         cookieArray.forEach((cell) => {
             if (cell[0] === 'T') {
                 array.push(cell)
@@ -64,7 +64,7 @@ const Sheet = ({ x, y, issheet, setSheet, sound }) => {
             all++
         })
         if (array.length > 0) {
-            var flag, middle, newArray = []
+            var flag, middle
             for (let i = 0; i < array.length - 1; i++) {
                 flag = 0
                 for (let j = 0; j < array.length - i - 1; j++) {
@@ -85,8 +85,6 @@ const Sheet = ({ x, y, issheet, setSheet, sound }) => {
                 for (let i = 0; i < 5; i++) {
                     newArray[i] = array[i]
                 }
-        } else {
-            array = []
         }
         if (all > 0) {
             lv = victory / all
