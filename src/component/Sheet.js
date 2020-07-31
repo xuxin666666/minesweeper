@@ -93,7 +93,7 @@ const Sheet = ({ x, y, issheet, setSheet, sound }) => {
             lv = lv.toFixed(3)
         } else lv = 0
         lv = lv * 100 + '%'
-        return [array, victory, all, lv]
+        return [newArray, victory, all, lv]
     }
 
     const confirming = () => {
