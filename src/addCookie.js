@@ -4,17 +4,18 @@ const setCookie = (value, time) => {
     var day = d.getDate()
     var year = d.getFullYear()
     var all = value + ',' + time + ',' + month + '.' + day + '.' + year
-    if (document.cookie === '')
-        document.cookie = "minesweeper=" + all + ",; expires=Sun, 31 Dec 2051 12:00:00 UTC"
-    else {
-        var name = 'minesweeper='
-        var cookie = document.cookie, newCookie
-        var start = cookie.indexOf(name)
+    var cookie = document.cookie, newCookie
+    var name = 'minesweeper='
+    var start = cookie.indexOf(name)
+    if (start !== -1) {
         var end = cookie.indexOf(";", start);
         if (end === -1) {
             end = cookie.length;
         }
         newCookie = cookie.slice(start, end) + all + ',; expires=Sun, 31 Dec 2051 12:00:00 UTC' + cookie.slice(end)
+        document.cookie = newCookie
+    } else {
+        newCookie = "minesweeper=" + all + ',; expires=Sun, 31 Dec 2051 12:00:00 UTC' + document.cookie
         document.cookie = newCookie
     }
 }
